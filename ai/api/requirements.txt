@@ -1,4 +1,11 @@
 pdfplumber
 pytesseract
 Pillow
-werkzeug 
+werkzeug
+# Optional for better OCR
+paddleocr
+# For ML
+scikit-learn
+xgboost
+# For testing
+pytest 

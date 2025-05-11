@@ -70,4 +70,7 @@ def evaluate_customer(metrics):
             'savings': market_premium - premium
         }
     else:
-        return {'eligible': False, 'reason': 'Unprofitable for insurer'} 
+        return {'eligible': False, 'reason': 'Unprofitable for insurer'}
+
+# To add new rules, add more checks below.
+# You can also use a trained ML model for eligibility/premium prediction. 
