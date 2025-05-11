@@ -1,7 +1,5 @@
 {
   "functions": {
-    "api/extract.py": {
-      "runtime": "python3.11"
-    }
+    "api/extract.py": {}
   }
 } 
