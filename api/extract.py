@@ -1,9 +1,9 @@
 import sys
 import os
 import tempfile
-from extractors.pdf_extractor import extract_metrics_from_pdf
-from extractors.image_extractor import extract_metrics_from_image
-from rules.premium_rules import evaluate_customer
+from .extractors.pdf_extractor import extract_metrics_from_pdf
+from .extractors.image_extractor import extract_metrics_from_image
+from .rules.premium_rules import evaluate_customer
 
 # Try to load the ML model if available
 model = None
@@ -13,7 +13,7 @@ model_features = [
 ]
 try:
     import joblib
-    model = joblib.load('data/model.joblib')
+    model = joblib.load('model.joblib')
 except Exception:
     pass
 
