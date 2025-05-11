@@ -1,7 +1,7 @@
 pdfplumber
 pytesseract
 Pillow
-werkzeug==2.3.8
+werkzeug==2.2.3
 # Optional for better OCR
 paddleocr
 # For ML
