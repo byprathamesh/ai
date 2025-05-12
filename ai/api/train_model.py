@@ -92,10 +92,18 @@ if WANDB_AVAILABLE:
         'model': MODEL_TYPE,
         'best_params': gs.best_params_
     })
-    wandb.sklearn.plot_classifier(gs, X_train, X_test, y_train, y_test, model_name=MODEL_TYPE)
+    try:
+        y_pred = model.predict(X_test)
+        try:
+            y_probas = model.predict_proba(X_test)
+        except Exception:
+            y_probas = None
+        if y_probas is not None:
+            wandb.sklearn.plot_classifier(gs, X_train, X_test, y_train, y_test, y_pred, y_probas, labels=[0, 1], model_name=MODEL_TYPE)
+    except Exception as e:
+        print(f"wandb plot_classifier failed: {e}")
     wandb.finish()
 
-y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 
 joblib.dump(model, f'data/model_{DATASET}_{MODEL_TYPE}.joblib')

@@ -4,6 +4,8 @@ import tempfile
 from extractors.pdf_extractor import extract_metrics_from_pdf
 from extractors.image_extractor import extract_metrics_from_image
 from rules.premium_rules import evaluate_customer
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # Try to load the ML model if available
 model = None
@@ -16,6 +18,18 @@ try:
     model = joblib.load('data/model.joblib')
 except Exception:
     pass
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/extract', methods=['POST'])
+def extract_route():
+    response = handler(request)
+    return response
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({'status': 'ok'})
 
 def handler(request):
     from werkzeug.wrappers import Request, Response

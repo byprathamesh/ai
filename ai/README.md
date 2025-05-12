@@ -1,9 +1,9 @@
-# Health Insurance Premium AI (Vercel-ready)
+# Health Insurance Premium AI (Render-ready)
 
 - Upload a blood test report (PDF or image)
 - Instantly see insurance eligibility and premium
 - Powered by Python AI backend and Next.js frontend
-- Deployable to Vercel
+- Deployable to Render (recommended) or Vercel
 
 ## How to use locally
 
@@ -13,10 +13,31 @@
 4. `npm run dev`
 5. Open http://localhost:3000
 
+## Deploy to Render (Recommended)
+
+### 1. Deploy the Python Backend
+- Go to [Render.com](https://render.com/)
+- Create a new Web Service from your repo
+- Set the root directory to `ai/api`
+- Set the build command to: `pip install -r requirements.txt`
+- Set the start command to: `gunicorn extract:app`
+- Note the public URL (e.g., `https://your-backend.onrender.com`)
+
+### 2. Deploy the Next.js Frontend
+- Create a new Web Service from your repo
+- Set the root directory to `ai`
+- Set the build command to: `npm install && npm run build`
+- Set the start command to: `npm start`
+- In your frontend code, update API calls to use the backend URL from step 1 (e.g., replace `/api/extract` with `https://your-backend.onrender.com/extract`)
+- Set the backend URL as an environment variable if needed
+
+### 3. (Optional) Environment Variables
+- Set any secrets or config as needed in the Render dashboard
+
 ## Deploy to Vercel
 
 - Push to GitHub and import to Vercel
-- Vercel will auto-detect Next.js and Python API 
+- Vercel will auto-detect Next.js and Python API (limited support for Python)
 
 ## 🚀 New Features & Improvements
 

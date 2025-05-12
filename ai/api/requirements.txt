@@ -2,6 +2,8 @@ pdfplumber
 pytesseract
 Pillow
 werkzeug
+Flask
+flask-cors
 # Optional for better OCR
 paddleocr
 # For ML
